@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
       //   });
        
     }
-    onclick(){
+    onClick(){
       this.clickcount.update(prevCount => prevCount+1);
 }
 
