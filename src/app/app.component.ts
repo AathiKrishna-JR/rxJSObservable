@@ -1,6 +1,6 @@
 import { Component, DestroyRef, OnInit, computed, effect, inject, signal } from '@angular/core';
 import {interval, map} from 'rxjs';
-import {toObservable} from '@angular/core/rxjs-interop';
+import {toObservable, toSignal} from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,6 +10,8 @@ export class AppComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   clickcount = signal(0);
   clickCount$ =toObservable(this.clickcount)
+  interval$ = interval(1000);
+  intervalSignal = toSignal(this.interval$,{initialValue: 0});
   // interval = signal(0);
   // doubbleInterval = computed(() => this.interval()*2);
    constructor(){
@@ -43,7 +45,7 @@ export class AppComponent implements OnInit {
     }
     onClick(){
       this.clickcount.update(prevCount => prevCount+1);
-      
+
 }
 
 }
